@@ -8,8 +8,12 @@ export default function CreateTodo({ createTodo }) {
     const { value } = evt.target;
     setTodo(value);
   };
+  const handleResetInput = () => {
+    setTodo('');
+  };
   const handleCreateTodo = () => {
     createTodo(todo);
+    handleResetInput();
   };
   return (
     <div className="create">
