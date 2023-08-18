@@ -1,11 +1,13 @@
-import React, { useRef, useState } from 'react';
+import { useState } from 'react';
+import useGenerateId from './useGenerateId';
+import { newTodoContract } from '../../utils/createTodo';
 
 export default function useTodo() {
   const [todos, setTodos] = useState([]);
-  const refId = useRef(1);
+  const { generateId } = useGenerateId();
   const handleCreateNote = (todo) => {
-    const { newTodo } = newTodoContract(todo, refId.current);
-    refId.current = refId.current + 1;
+    const id = generateId();
+    const { newTodo } = newTodoContract(todo, id);
     setTodos([...todos, newTodo]);
   };
   return {
