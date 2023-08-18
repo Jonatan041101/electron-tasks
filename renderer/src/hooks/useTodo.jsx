@@ -10,8 +10,15 @@ export default function useTodo() {
     const { newTodo } = newTodoContract(todo, id);
     setTodos([...todos, newTodo]);
   };
+  const handleUpdateTodo = (id, text) => {
+    const copyTodos = [...todos];
+    const todo = copyTodos.find((todo) => todo.id === id);
+    todo.text = text;
+    setTodos(copyTodos);
+  };
   return {
     todos,
     handleCreateNote,
+    handleUpdateTodo,
   };
 }
