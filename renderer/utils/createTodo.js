@@ -1,4 +1,4 @@
-export const newTodo = (todo, id) => {
+export const newTodoContract = (todo, id) => {
   const newTodo = {
     id,
     text: todo,
