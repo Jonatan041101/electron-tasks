@@ -1,14 +1,14 @@
 import React from 'react';
 import CreateTodo from '../molecules/CreateTodo';
 import Todo from './Todo';
-import useTodo from '../hooks/useTodo';
+import useTodos from '../hooks/useTodos';
 export default function Todos() {
-  const { todos, handleCreateNote } = useTodo();
+  const { todos, handleCreateNote, handleUpdateTodo } = useTodos();
   return (
     <div>
       <CreateTodo createTodo={handleCreateNote} />
       {todos.map((todo) => (
-        <Todo todo={todo} key={todo.id} />
+        <Todo onUpdate={handleUpdateTodo} todo={todo} key={todo.id} />
       ))}
     </div>
   );

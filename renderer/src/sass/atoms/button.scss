@@ -1,6 +1,6 @@
 .button {
   padding: 0.5em;
-  color: #fff;
+  color: currentColor;
   text-align: center;
   width: 100%;
   @include flex(row, nowrap, center, center, 0);
@@ -11,6 +11,15 @@
     border: 1px solid $color-violet-hover;
     &:hover {
       background: $color-violet-hover;
+    }
+  }
+  &__edit {
+    color: #000;
+    background-color: $color-placeholder;
+    border: 1px solid $color-transparent;
+    &:hover {
+      color: #fff;
+      background: $color-border-key;
     }
   }
 }
