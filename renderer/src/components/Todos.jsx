@@ -1,14 +1,12 @@
 import React, { useRef, useState } from 'react';
 import CreateTodo from '../molecules/CreateTodo';
+import { newTodoContract } from '../../utils/createTodo';
 
 export default function Todos() {
   const [todos, setTodos] = useState([]);
   const refId = useRef(1);
   const handleCreateNote = (todo) => {
-    const newTodo = {
-      id: refId,
-      text: todo,
-    };
+    const newTodo = newTodoContract(todo);
     refId.current = refId.current + 1;
     setTodos([...todos, newTodo]);
   };
