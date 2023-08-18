@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Input from '../atoms/Input';
 import ButtonComplete from '../atoms/ButtonComplete';
 import Form from '../atoms/Form';
+import { isValidNote } from '../../utils/isValidNote';
 
 export default function CreateTodo({ createTodo }) {
   const [todo, setTodo] = useState('');
@@ -17,6 +18,7 @@ export default function CreateTodo({ createTodo }) {
     createTodo(todo);
     handleResetInput();
   };
+  const IS_DISABLED = isValidNote(todo);
   return (
     <div className="create">
       <Form onSubmit={handleCreateTodo}>
@@ -27,7 +29,11 @@ export default function CreateTodo({ createTodo }) {
           value={todo}
           type="text"
         />
-        <ButtonComplete handleClick={() => {}} text="Crear Nota" />
+        <ButtonComplete
+          isDisabled={IS_DISABLED}
+          handleClick={() => {}}
+          text="Crear Nota"
+        />
       </Form>
     </div>
   );
