@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import Input from '../atoms/Input';
 import ButtonComplete from '../atoms/ButtonComplete';
 
-export default function CreateTodo() {
+export default function CreateTodo({ createTodo }) {
   const [todo, setTodo] = useState('');
   const handleChange = (evt) => {
-    const { name, value } = evt.target;
+    const { value } = evt.target;
     setTodo(value);
+  };
+  const handleCreateTodo = () => {
+    createTodo(todo);
   };
   return (
     <div className="create">
@@ -17,7 +20,7 @@ export default function CreateTodo() {
         value={todo}
         type="text"
       />
-      <ButtonComplete handleClick={() => {}} text="Crear Nota" />
+      <ButtonComplete handleClick={handleCreateTodo} text="Crear Nota" />
     </div>
   );
 }
