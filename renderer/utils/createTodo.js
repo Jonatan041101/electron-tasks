@@ -3,5 +3,5 @@ export const newTodoContract = (todo, id) => {
     id,
     text: todo,
   };
-  return newTodo;
+  return { newTodo };
 };
