@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Button from './button';
 
-export default function ButtonEdit() {
+export default function ButtonEdit({ text, isDisabled, handleClick }) {
   return (
-    <div>
-      
+    <div className="">
+      <Button isDisabled={isDisabled} handleClick={handleClick}>
+        {text}
+      </Button>
     </div>
-  )
+  );
 }
