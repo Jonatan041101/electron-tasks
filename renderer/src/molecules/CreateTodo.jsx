@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Input from '../atoms/Input';
 import ButtonComplete from '../atoms/ButtonComplete';
+import Form from '../atoms/Form';
 
 export default function CreateTodo({ createTodo }) {
   const [todo, setTodo] = useState('');
@@ -11,20 +12,23 @@ export default function CreateTodo({ createTodo }) {
   const handleResetInput = () => {
     setTodo('');
   };
-  const handleCreateTodo = () => {
+  const handleCreateTodo = (evt) => {
+    evt.preventDefault();
     createTodo(todo);
     handleResetInput();
   };
   return (
     <div className="create">
-      <Input
-        name="create"
-        handleChange={handleChange}
-        placeholder="Cree una nueva nota"
-        value={todo}
-        type="text"
-      />
-      <ButtonComplete handleClick={handleCreateTodo} text="Crear Nota" />
+      <Form onSubmit={handleCreateTodo}>
+        <Input
+          name="create"
+          handleChange={handleChange}
+          placeholder="Cree una nueva nota"
+          value={todo}
+          type="text"
+        />
+        <ButtonComplete handleClick={() => {}} text="Crear Nota" />
+      </Form>
     </div>
   );
 }
