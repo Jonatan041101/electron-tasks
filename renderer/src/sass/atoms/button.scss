@@ -1,0 +1,17 @@
+.button {
+  padding: 0.5em;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  @include flex(row, nowrap, center, center, 0);
+  transition: 0.3s ease;
+  &__complete {
+    color: $gray-color-text;
+    background-color: $color-violet;
+    border: 1px solid $color-violet-hover;
+    &:hover {
+      background: $color-violet-hover;
+    }
+  }
+}
