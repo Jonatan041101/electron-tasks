@@ -1,9 +1,9 @@
 import React from 'react';
 import CreateTodo from '../molecules/CreateTodo';
 import Todo from './Todo';
-import useTodo from '../hooks/useTodo';
+import useTodos from '../hooks/useTodos';
 export default function Todos() {
-  const { todos, handleCreateNote, handleUpdateTodo } = useTodo();
+  const { todos, handleCreateNote, handleUpdateTodo } = useTodos();
   return (
     <div>
       <CreateTodo createTodo={handleCreateNote} />

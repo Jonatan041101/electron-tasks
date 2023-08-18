@@ -2,7 +2,7 @@ import { useState } from 'react';
 import useGenerateId from './useGenerateId';
 import { newTodoContract } from '../../utils/createTodo';
 
-export default function useTodo() {
+export default function useTodos() {
   const [todos, setTodos] = useState([]);
   const { generateId } = useGenerateId();
   const handleCreateNote = (todo) => {
