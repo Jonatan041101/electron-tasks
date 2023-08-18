@@ -1,39 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import ButtonEdit from '../atoms/ButtonEdit';
 import Form from '../atoms/Form';
 import Input from '../atoms/Input';
 import ButtonComplete from '../atoms/ButtonComplete';
 import { isValidNote } from '../../utils/isValidNote';
+import { INITIAL_STATE, IS_EDIT, TEXT, reducer } from './reducer';
 
 export default function Todo({ todo, onUpdate }) {
-  const [isEdit, setIsEdit] = useState(false);
-  const [text, setText] = useState(todo.text);
+  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   useEffect(() => {
-    setText(todo.text);
-  }, [todo.text, isEdit]);
+    dispatch({ type: TEXT, payload: todo.text });
+  }, [todo.text, state.isEdit]);
   const handleUpdateTodo = (evt) => {
     evt.preventDefault();
-    onUpdate(todo.id, text);
+    onUpdate(todo.id, state.text);
     handleChangeEditTodo();
   };
   const handleChange = (evt) => {
     const { value } = evt.target;
-    setText(value);
+    dispatch({ type: TEXT, payload: value });
   };
   const handleChangeEditTodo = () => {
-    setIsEdit(!isEdit);
+    dispatch({ type: IS_EDIT });
   };
-  const IS_DISABLED = isValidNote(text);
-  const TEXT_BUTTON_EDIT = isEdit ? 'Cancelar' : 'Editar';
+  const IS_DISABLED = isValidNote(state.text);
+  const TEXT_BUTTON_EDIT = state.isEdit ? 'Cancelar' : 'Editar';
   return (
     <article>
-      {isEdit ? (
+      {state.isEdit ? (
         <Form onSubmit={handleUpdateTodo}>
           <Input
             handleChange={handleChange}
             name="Edit"
             placeholder="Edita tu todo"
-            value={text}
+            value={state.text}
             type="text"
           />
           <ButtonComplete
